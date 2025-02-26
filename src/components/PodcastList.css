@@ -1,0 +1,36 @@
+/* src/components/podcast/PodcastList.css */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex; /* Use flexbox to arrange items in a row */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Center the items */
+  }
+  
+  li {
+    margin: 10px; /* Add margin around each item */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: box-shadow 0.3s;
+    width: 30%; /* Set width to 30% to fit three items in a row */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+  }
+  
+  li:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  h3 {
+    margin: 0;
+  }
+  
+  p {
+    margin: 5px 0 0;
+  }

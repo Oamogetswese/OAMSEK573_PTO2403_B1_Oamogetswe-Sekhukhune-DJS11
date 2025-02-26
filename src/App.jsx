@@ -1,19 +1,28 @@
+// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Episodes from './components/Episodes';
-import Favorites from './components/Favorites';
+import Layout from './components/layout/Layout';
+import Home from './pages/Home';
+import ShowList from './components/ShowList';
+import ShowDetail from './components/ShowDetail';
+import SeasonDetail from './components/SeasonDetail';
+import EpisodeDetail from './components/EpisodesDetail';
+import Favorites from './pages/Favorites';
 
 const App = () => {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/episodes" element={<Episodes />} />
-        <Route path="/favorites" element={<Favorites />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shows" element={<ShowList />} />
+          <Route path="/shows/:id" element={<ShowDetail />} />
+          <Route path="/shows/:showId/seasons/:seasonId" element={<SeasonDetail />} />
+          <Route path="/shows/:showId/seasons/:seasonId/episodes/:episodeId" element={<EpisodeDetail />} />
+          <Route path="/favorites" element={<Favorites />} />
+           
+        </Routes>
+      </Layout>
     </Router>
   );
 };
