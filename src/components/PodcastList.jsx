@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './PodcastList.css'
+import { Link } from 'react-router-dom';
+import './PodcastList.css';
+import PodcastDetails from './PodcastDetails';
 
 const PodcastList = () => {
   const [podcasts, setPodcasts] = useState([]);
@@ -8,9 +9,12 @@ const PodcastList = () => {
   useEffect(() => {
     const fetchPodcasts = async () => {
       try {
-        const response = await fetch('https://podcast-api.netlify.app'); // Replace with your API endpoint
+        const response = await fetch('https://podcast-api.netlify.app');  
         const data = await response.json();
-        setPodcasts(data);
+        
+        // Sort podcasts alphabetically by title
+        const sortedPodcasts = data.sort((a, b) => a.title.localeCompare(b.title));
+        setPodcasts(sortedPodcasts);
       } catch (error) {
         console.error('Error fetching podcasts:', error);
       }
@@ -25,7 +29,12 @@ const PodcastList = () => {
       <ul>
         {podcasts.map((podcast) => (
           <li key={podcast.id}>
-            <h3>{podcast.title}</h3>
+            <h3>
+              <Link to={`/podcasts/${podcast.id}`}>
+                {podcast.title}
+              </Link>
+            </h3>
+            <img src={podcast.image} alt={podcast.title} style={{ width: '100px', height: '100px' }} />
             <p>{podcast.description}</p>
           </li>
         ))}
